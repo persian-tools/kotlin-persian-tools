@@ -1,3 +1,5 @@
+name: Prepare Release
+
 on:
   pull_request:
     types: [closed]
