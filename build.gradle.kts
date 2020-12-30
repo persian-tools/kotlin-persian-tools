@@ -5,9 +5,6 @@ plugins {
     `maven-publish`
 }
 
-group = "ir.moeindeveloper"
-version = "1.0-SNAPSHOT"
-
 repositories {
     mavenCentral()
 }
@@ -23,4 +20,24 @@ tasks.test {
 
 tasks.withType<KotlinCompile>() {
     kotlinOptions.jvmTarget = "1.8"
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("default") {
+            from(components["java"])
+            // Include any other artifacts here, like javadocs
+        }
+    }
+
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/moeindev/KotlinPersianUtils")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
 }
