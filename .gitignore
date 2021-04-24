@@ -1,0 +1,9 @@
+/.gradle/
+**/.idea/*
+!/.idea/icon.png
+!/.idea/vcs.xml
+*.iml
+/build
+/out
+/target
+/local.properties
