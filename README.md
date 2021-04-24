@@ -26,3 +26,34 @@
 - [ ] Validating ATM card number
 - [ ] Finding name of banks by ATM card number
 - [ ] Getting information from vehicle plate
+
+## Usage
+
+### Ordinal suffixes
+
+- #### Add ordinal suffix:
+  ``` 
+  "پنجاه سه".addOrdinalSuffix() //will return پنجاه سوم
+  
+  val number = "ده"
+  
+  number.addOrdinalSuffix() // will return دهم
+
+  //or:
+  
+  OrdinalSuffix.removeOrdinalSuffix("سی دو") //will return سی دوم
+  ```
+  
+- #### Remove ordinal suffix:
+
+  ``` 
+  "پنجاه سوم".addOrdinalSuffix() //will return پنجاه سه
+  
+  val number = "دهم"
+  
+  number.addOrdinalSuffix() // will return ده
+
+  //or:
+  
+  OrdinalSuffix.removeOrdinalSuffix("سی دوم") //will return سی دو
+  ```
