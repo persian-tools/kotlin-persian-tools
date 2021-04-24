@@ -13,6 +13,7 @@
 <hr/>
 
 ## Features
+- [x] Ordinal suffixes(add/remove)
 - [ ] Converting Persian words to number
 - [ ] Converting Persian numbers to word
 - [ ] Adding and removing separator to/from numbers
