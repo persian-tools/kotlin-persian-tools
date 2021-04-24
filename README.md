@@ -41,17 +41,17 @@
 
   //or:
   
-  OrdinalSuffix.removeOrdinalSuffix("سی دو") //will return سی دوم
+  OrdinalSuffix.addOrdinalSuffix("سی دو") //will return سی دوم
   ```
   
 - #### Remove ordinal suffix:
 
   ``` 
-  "پنجاه سوم".addOrdinalSuffix() //will return پنجاه سه
+  "پنجاه سوم".removeOrdinalSuffix() //will return پنجاه سه
   
   val number = "دهم"
   
-  number.addOrdinalSuffix() // will return ده
+  number.removeOrdinalSuffix() // will return ده
 
   //or:
   
