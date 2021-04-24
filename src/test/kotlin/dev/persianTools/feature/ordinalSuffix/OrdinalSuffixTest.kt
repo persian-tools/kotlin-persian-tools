@@ -19,8 +19,22 @@ class OrdinalSuffixTest {
             "سی دو,سی دوم",
             "ده,دهم",
         ])
-        fun `ordinal suffix result is true`(input: String, excepted: String) {
+        fun `add ordinal suffix result is true`(input: String, excepted: String) {
             assertThat(OrdinalSuffix.addOrdinalSuffix(input)).isEqualTo(excepted)
+        }
+
+
+        @ParameterizedTest
+        @CsvSource(value = [
+            "پنجاه سه,پنجاه سوم",
+            "سی دو,سی دوم",
+            "شصت,شصتم",
+            "سی,سی اُم",
+            "سی دو,سی دوم",
+            "ده,دهم",
+        ])
+        fun `remove ordinal suffix result is true`(excepted: String, input: String) {
+            assertThat(OrdinalSuffix.removeOrdinalSuffix(input)).isEqualTo(excepted)
         }
     }
 
@@ -35,8 +49,22 @@ class OrdinalSuffixTest {
             "سی دو,سی دوم",
             "ده,دهم",
         ])
-        fun `ordinal suffix result is true`(input: String, excepted: String) {
+        fun `add ordinal suffix result is true`(input: String, excepted: String) {
             assertThat(input.addOrdinalSuffix()).isEqualTo(excepted)
+        }
+
+
+        @ParameterizedTest
+        @CsvSource(value = [
+            "پنجاه سه,پنجاه سوم",
+            "سی دو,سی دوم",
+            "شصت,شصتم",
+            "سی,سی اُم",
+            "سی دو,سی دوم",
+            "ده,دهم",
+        ])
+        fun `remove ordinal suffix result is true`(excepted: String, input: String) {
+            assertThat(input.removeOrdinalSuffix()).isEqualTo(excepted)
         }
     }
 }
