@@ -5,8 +5,8 @@ package dev.persianTools.feature.bill
  */
 data class Bill(
     var barcode: String? = null,
-    val currency: BillCurrency,
-    val billId: Int?,
+    val currency: BillCurrency = BillCurrency.TOMAN,
+    val billId: Long?,
     val paymentId: Int?
 ): BillResult {
 
