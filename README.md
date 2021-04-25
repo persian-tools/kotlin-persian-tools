@@ -32,7 +32,7 @@
 ### Ordinal suffixes
 
 - #### Add ordinal suffix:
-  ``` 
+  ```kotlin
   "پنجاه سه".addOrdinalSuffix() //will return پنجاه سوم
   
   val number = "ده"
@@ -46,7 +46,7 @@
   
 - #### Remove ordinal suffix:
 
-  ``` 
+  ```kotlin
   "پنجاه سوم".removeOrdinalSuffix() //will return پنجاه سه
   
   val number = "دهم"
