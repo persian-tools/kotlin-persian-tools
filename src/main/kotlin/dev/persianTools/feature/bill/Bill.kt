@@ -5,7 +5,7 @@ package dev.persianTools.feature.bill
  */
 @ExperimentalStdlibApi
 data class Bill(
-    var barcode: String? = null,
+    private val _barcode: String? = null,
     val currency: BillCurrency = BillCurrency.TOMAN,
     val billId: Long?,
     val paymentId: Int?
@@ -43,11 +43,7 @@ data class Bill(
     override fun barcode(): String? {
         if (billId == null || paymentId == null) return null
 
-        val br = "${billId}000${paymentId}"
-
-        if (barcode == null) barcode = br
-
-        return br
+        return _barcode ?: """${billId}000$paymentId"""
     }
 
     override fun isValid(): Boolean = isValidBillId() && isValidBillPayment()
