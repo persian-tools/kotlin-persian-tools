@@ -74,6 +74,23 @@ class BillTest {
                     2234322344613, 1070189, false
                 ),
             )
+
+        @JvmStatic
+        fun providePaymentIdValidationValues(): Stream<Arguments> =
+            Stream.of(
+                Arguments.of(
+                    7748317800142, 1770160, true
+                ),
+                Arguments.of(
+                    9174639504124, 12908197, false
+                ),
+                Arguments.of(
+                    2050327604613, 1070189, true
+                ),
+                Arguments.of(
+                    2234322344613, 1070189, false
+                ),
+            )
     }
     @Nested
     inner class BillResultTest {
@@ -120,13 +137,22 @@ class BillTest {
             }
         }
 
-
         @Nested
         inner class BillIdValidation {
             @ParameterizedTest
             @MethodSource("dev.persianTools.feature.bill.BillTest#provideBillIdValidationValues")
             fun `bill id validation test`(billId: Long, paymentId: Int, result: Boolean) {
                 assertThat(Bill(billId = billId, paymentId = paymentId).isValidBillId()).isEqualTo(result)
+            }
+        }
+
+        @Nested
+        inner class BillPaymentIdValidation {
+
+            @ParameterizedTest
+            @MethodSource("dev.persianTools.feature.bill.BillTest#providePaymentIdValidationValues")
+            fun `Payment id validation test`(billId: Long, paymentId: Int, result: Boolean) {
+                assertThat(Bill(billId = billId, paymentId = paymentId).isValidBillPayment()).isEqualTo(result)
             }
         }
     }
