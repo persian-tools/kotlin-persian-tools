@@ -39,6 +39,23 @@ class BillTest {
                     1117753200140,1770165,1700
                 )
             )
+
+        @JvmStatic
+        fun provideBillTypeValues(): Stream<Arguments> =
+            Stream.of(
+                Arguments.of(
+                    7748317800142, 1770160, BillType.PHONE
+                ),
+                Arguments.of(
+                    9174639504124, 12908197, BillType.ELECTRICITY
+                ),
+                Arguments.of(
+                    2050327604613, 1070189, BillType.WATER
+                ),
+                Arguments.of(
+                    9100074409151, 12908190, BillType.CELLPHONE
+                ),
+            )
     }
     @Nested
     inner class BillResultTest {
@@ -75,6 +92,15 @@ class BillTest {
             }
         }
 
+        @Nested
+        inner class BillTypeTest {
+            @ParameterizedTest
+            @MethodSource("dev.persianTools.feature.bill.BillTest#provideBillTypeValues")
+            fun `Bill type is correct`(billId: Long, paymentId: Int, type: BillType) {
+                assertThat(Bill(billId = billId, paymentId = paymentId).type())
+                    .isEqualTo(type)
+            }
+        }
 
     }
 
