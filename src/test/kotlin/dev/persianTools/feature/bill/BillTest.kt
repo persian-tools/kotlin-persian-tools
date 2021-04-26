@@ -91,6 +91,23 @@ class BillTest {
                     2234322344613, 1070189, false
                 ),
             )
+
+        @JvmStatic
+        fun provideBarcodeValidationValues(): Stream<Arguments> =
+            Stream.of(
+                Arguments.of(
+                    7748317800142, 1770160, "77483178001420001770160"
+                ),
+                Arguments.of(
+                    9174639504124, 12908197, "917463950412400012908197"
+                ),
+                Arguments.of(
+                    2050327604613, 1070189, "20503276046130001070189"
+                ),
+                Arguments.of(
+                    2234322344613, 1070189, "22343223446130001070189"
+                ),
+            )
     }
     @Nested
     inner class BillResultTest {
@@ -153,6 +170,25 @@ class BillTest {
             @MethodSource("dev.persianTools.feature.bill.BillTest#providePaymentIdValidationValues")
             fun `Payment id validation test`(billId: Long, paymentId: Int, result: Boolean) {
                 assertThat(Bill(billId = billId, paymentId = paymentId).isValidBillPayment()).isEqualTo(result)
+            }
+        }
+
+        @Nested
+        inner class BillValidation {
+
+            @ParameterizedTest
+            @MethodSource("dev.persianTools.feature.bill.BillTest#providePaymentIdValidationValues")
+            fun `Bill validation`(billId: Long, paymentId: Int, result: Boolean) {
+                assertThat(Bill(billId = billId, paymentId = paymentId).isValid()).isEqualTo(result)
+            }
+        }
+
+        @Nested
+        inner class BarcodeValidation {
+            @ParameterizedTest
+            @MethodSource("dev.persianTools.feature.bill.BillTest#provideBarcodeValidationValues")
+            fun `Barcode validation`(billId: Long, paymentId: Int, result: String) {
+                assertThat(Bill(billId = billId, paymentId = paymentId).barcode()).isEqualTo(result)
             }
         }
     }
