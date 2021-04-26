@@ -194,5 +194,15 @@ class BillTest {
     }
 
     @Nested
-    inner class BarcodeTest {}
+    inner class BarcodeTest {
+
+        @ParameterizedTest
+        @MethodSource("dev.persianTools.feature.bill.BillTest#provideBarcodeValidationValues")
+        fun `Find billId & paymentId`(billId: Long, paymentId: Int, barcode: String) {
+            val (billResult, paymentResult) = Bill.findByBarcode(barcode)
+            assertThat(billResult).isEqualTo(billId)
+            assertThat(paymentResult).isEqualTo(paymentId)
+        }
+
+    }
 }
