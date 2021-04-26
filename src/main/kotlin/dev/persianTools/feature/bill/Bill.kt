@@ -3,6 +3,7 @@ package dev.persianTools.feature.bill
 /**
  * Bill class
  */
+@ExperimentalStdlibApi
 data class Bill(
     var barcode: String? = null,
     val currency: BillCurrency = BillCurrency.TOMAN,
@@ -36,7 +37,7 @@ data class Bill(
         val billIdStr = billId.toString()
 
         return billIdStr.substring(billIdStr.length - 2,
-            billIdStr.length -1).toIntOrNull()?.billType() ?: BillType.UNKNOWN
+            billIdStr.length -1).toInt().billType()
     }
 
     override fun barcode(): String? {
@@ -60,7 +61,7 @@ data class Bill(
 
         billIdStr = billIdStr.substring(0,billIdStr.length - 1)
 
-        return calTheBit(billIdStr) == firstControlBit.toInt() && type() != BillType.UNKNOWN
+        return calTheBit(billIdStr) == firstControlBit.toString().toInt() && type() != BillType.UNKNOWN
     }
 
     override fun isValidBillPayment(): Boolean {
@@ -74,9 +75,9 @@ data class Bill(
 
         paymentIdStr = paymentIdStr.substring(0,paymentIdStr.length - 2)
 
-        return calTheBit(paymentIdStr) == firstControlBit.toInt() &&
+        return calTheBit(paymentIdStr) == firstControlBit.toString().toInt() &&
                 calTheBit(billIdStr + paymentIdStr + firstControlBit) ==
-                secondControlBit.toInt()
+                secondControlBit.toString().toInt()
     }
 
     private fun calTheBit(number: String): Int {
