@@ -17,10 +17,10 @@ data class Bill(
          * @sample
          *   val (billID,paymentID) = Bill.findByBarcode(barcode)
          */
-        fun findByBarcode(barcode: String): Pair<Int?,Int?> {
+        fun findByBarcode(barcode: String): Pair<Long,Int> {
             return Pair(
-                barcode.substring(0,13).toIntOrNull(),
-                barcode.substring(16).toIntOrNull()
+                barcode.substring(0,13).toLong(),
+                barcode.substring(16).toInt()
             )
         }
     }
