@@ -20,7 +20,7 @@
 - [ ] Converting Persian numbers to Arabic / English numbers and reverse
 - [ ] Validating Iranians national id
 - [ ] Finding city and province names by national id
-- [ ] Calculating bills
+- [x] Calculating bills
 - [ ] Checking validation of IBAN (_SHEBA_)
 - [ ] Recognizing bank information by IBAN (_SHEBA_)
 - [ ] Validating ATM card number
@@ -32,7 +32,7 @@
 ### Ordinal suffixes
 
 - #### Add ordinal suffix:
-  ``` 
+  ```kotlin
   "پنجاه سه".addOrdinalSuffix() //will return پنجاه سوم
   
   val number = "ده"
@@ -46,7 +46,7 @@
   
 - #### Remove ordinal suffix:
 
-  ``` 
+  ```kotlin
   "پنجاه سوم".removeOrdinalSuffix() //will return پنجاه سه
   
   val number = "دهم"
@@ -57,3 +57,30 @@
   
   OrdinalSuffix.removeOrdinalSuffix("سی دوم") //will return سی دو
   ```
+
+### Calculating Bills
+
+**_Usage:_**
+```kotlin
+val bill = Bill(
+  billId = billId,
+  paymentId = paymentId,
+  currency = BillCurrency.RIAL
+)
+
+
+bill.amount() //calculate amount of bill based on the currency
+
+bill.type() //get the BillType
+
+bill.barcode() //get the barcode String
+//Validations:
+bill.isValidBillId()
+bill.isValidBillPayment()
+bill.isValid()
+```
+_Just have the barcode string? find `BillID` and `PaymentID`:_
+
+```kotlin
+val (billId, paymentId) = Bill.findByBarcode(barcode)
+```
