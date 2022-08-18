@@ -1,3 +1,5 @@
 
 rootProject.name = 'kotlin-persian-tools'
 
+include ':lib'
+include ':exmaple'
